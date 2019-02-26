@@ -150,13 +150,13 @@ jQuery.getJSON( "batiment.geojson", function( json ){
 
      let layerControl = {
   
-  '<img src="legend/marker.png" /> Photo': markers,
-  '<img src="legend/cadastre.png" /> Cadastre': mylayer
+  'Photo': markers,
+  'Cadastre': mylayer
 
 }   
 
 // Reglage du controleurs des couches
-L.control.layers(baselayers, layerControl, {collapsed:false}).addTo(map);
+L.control.layers(baselayers, layerControl).addTo(map);
 
 </script>
 </body>
