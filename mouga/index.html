@@ -110,9 +110,18 @@ L.control.scale().addTo(map);
 
 map.attributionControl.addAttribution('Moustapha & Farhan');
 
-var batiment= $.getJSON("batiment.geojson",function(data)
-{L.geoJson(data).addTo(map);
-});
+
+let mylayer = L.layerGroup().addTo( map )
+
+
+/* 3 */
+// This function is run for every feature found in the geojson file. It adds the feature to the empty layer we created above
+function addMyData( feature, layer ){
+  mylayer.addLayer( layer )
+  // some other code can go here, like adding a popup with layer.bindPopup("Hello")
+}
+
+
 
 
 var markers = L.markerClusterGroup();
@@ -130,17 +139,24 @@ for (var i = 0; i < addressPoints.length; i++) {
 map.addLayer(markers);
 
 
+/* 2 */
+// fill that layer with data from a geojson file
+jQuery.getJSON( "batiment.geojson", function( json ){
+  L.geoJSON( json, {
+    onEachFeature: addMyData,
+  })
+})
 
 
      let layerControl = {
   
-  'Photo': markers,
-  
+  '<img src="legend/marker.png" /> Photo': markers,
+  '<img src="legend/cadastre.jpg" /> Cadastre': mylayer
 
 }   
 
 // Reglage du controleurs des couches
-L.control.layers(baselayers, layerControl).addTo(map);
+L.control.layers(baselayers, layerControl, {collapsed:false}).addTo(map);
 
 </script>
 </body>
