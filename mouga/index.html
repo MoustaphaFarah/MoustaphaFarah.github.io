@@ -64,7 +64,7 @@ var addressPoints = [
   [11.553115,  43.119252, (customPopup = "<b>Balbala , zone 1<br/<br/><img src='image1.jpg' width='300px'/>"),],
   [11.556298, 43.117883, (customPopup = "<b>Balbala , zone 4<br/<br/><img src='image4.jpg' width='300px'/>")],
   [ 11.552728,  43.117415, (customPopup = "<b>Balbala , zone 5<br/<br/><img src='image5.jpg' width='300px'/>")],
-  [  11.549992,   43.117657, (customPopup = "<b>Balbala , zone 6<br/<br/><img src='image6.jpg' width='300px'/>")]
+  [  11.549992,   43.117657, (customPopup = "<b>Balbala , zone 5<br/<br/><img src='image6.jpg' width='300px'/>")]
 ]
 
 var map = L.map('map').setView([11.5806, 43.1457], 13);
@@ -154,8 +154,8 @@ jQuery.getJSON( "batiment.geojson", function( json ){
      let layerControl = {
   
   '<img src="legend/marker.png" /> Photo': markers,
-  '<img src="legend/cadastre.jpg" /> Cadastre': mylayer,
-  'commune':commune
+  '<img src="legend/cadastre.jpg" /> Cadastre': mylayer
+  
 
 }   
 
