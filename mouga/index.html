@@ -125,6 +125,7 @@ function addMyData( feature, layer ){
 
 
 
+
 var markers = L.markerClusterGroup();
 
 for (var i = 0; i < addressPoints.length; i++) {
@@ -152,7 +153,8 @@ jQuery.getJSON( "batiment.geojson", function( json ){
      let layerControl = {
   
   '<img src="legend/marker.png" /> Photo': markers,
-  '<img src="legend/cadastre.jpg" /> Cadastre': mylayer
+  '<img src="legend/cadastre.jpg" /> Cadastre': mylayer,
+  'commune':commune
 
 }   
 
