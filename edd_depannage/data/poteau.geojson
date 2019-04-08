@@ -4,6 +4,6 @@
                                                                                 
 "features": [
 { "type": "Feature", "properties": { "NAME": 741852, "Type": "Bois", "commune": "Boulaos", "quartier": "Quartier 6" }, "geometry": { "type": "Point", "coordinates": [ 43.145170571685171, 11.581051007188041 ] } },
-{ "type": "Feature", "properties": { "NAME": 123456, "Type": "Fer", "commune": "Balbala", "quartier": "Balbala an" }, "geometry": { "type": "Point", "coordinates": [ 43.118130311364489, 11.550659493474194 ] } }
+{ "type": "Feature", "properties": { "NAME": 123456, "Type": "Fer", "commune": "Balbala", "quartier": "Balbala ancien" }, "geometry": { "type": "Point", "coordinates": [ 43.118130311364489, 11.550659493474194 ] } }
 ]
 }
