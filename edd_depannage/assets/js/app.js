@@ -232,7 +232,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>" + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>" +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>" + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>" + "<tr><th>Type</th><td>" + feature.properties.Type + "</td></tr>"  +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -275,7 +275,7 @@ var compteur = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Proprietaire</th><td>" + feature.properties.Proprietai + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>"  + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"+ "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero de contrat</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Nom</th><td>" + feature.properties.Nom + "</td></tr>" + "<tr><th>Numero du client</th><td>" + feature.properties.Num_client + "</td></tr>"  + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"+  "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>"  + "<tr><th>Numero du poteau</th><td>" + feature.properties.poteau + "</td></tr>" + "<tr><th>Numero du Telephone</th><td>" + feature.properties.Num_tel + "</td></tr>"  + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -284,10 +284,10 @@ var compteur = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.poteau + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.Proprietai,
+        name: layer.feature.properties.poteau,
+        address: layer.feature.properties.Nom,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -540,7 +540,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/compteur.png' width='24' height='28'>&nbsp;Compteur</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/icone.png' width='24' height='28'>&nbsp;Abonnes</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
