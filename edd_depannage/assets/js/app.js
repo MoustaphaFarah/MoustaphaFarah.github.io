@@ -146,7 +146,7 @@ var boroughs = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.BoroName,
+      name: layer.feature.properties.NOM,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
@@ -178,7 +178,7 @@ var subwayLines = L.geoJson(null, {
       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Route + "</td></tr>"  + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.Line);
+          $("#feature-title").html(feature.properties.Route);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
 
@@ -357,7 +357,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -411,7 +411,7 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
-  "Points of Interest": {
+  "  Points d’intérêt ": {
     "<img src='assets/img/poteau.png' width='24' height='28'>&nbsp;poteau": poteauLayer,
     "<img src='assets/img/compteur.png' width='24' height='28'>&nbsp;compteur": compteurLayer
   },
@@ -525,7 +525,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Boroughs</h4>"
+      header: "<h4 class='typeahead-header'>Commune</h4>"
     }
   }, {
     name: "poteau",
@@ -548,7 +548,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;GeoNames</h4>"
+      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;Géocodage</h4>"
     }
   }).on("typeahead:selected", function (obj, datum) {
     if (datum.source === "Boroughs") {
