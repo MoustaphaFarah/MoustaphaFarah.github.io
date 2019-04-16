@@ -232,7 +232,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Dégat</th><td>" + feature.properties.degat + "</td></tr>" + "<tr><th>heure</th><td>" + feature.properties.heure + "</td></tr>" + "<tr><th>Date</th><td>" + feature.properties.date + "</td></tr>" + "</td></tr>" + "<tr><th>Lieu</th><td>" + feature.properties.Lieu + "</td></tr>"+ '<img src="'+ feature.properties.Picture +'" style="width:200px;height:200px;">'  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Dégat</th><td>" + feature.properties.degat + "</td></tr>" + "<tr><th>heure</th><td>" + feature.properties.heure + "</td></tr>" + "<tr><th>Date</th><td>" + feature.properties.date + "</td></tr>" + "</td></tr>" + "<tr><th>Lieu</th><td>" + feature.properties.Lieu + "</td></tr>"+ '<img src="'+ feature.properties.Picture +'" style="width:300px;height:300px;">'  +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
