@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE LA CORNE D'AFRIQUE", "Tel": 21353444, "fax": 21350049, "email": "pharmaciecornedafrique@gmail.com", "date": 2008, "adresse": "Rue de Marseille", "image": "image1.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.147919829614445, 11.595424729971187 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE L'OCEAN INDIEN", "Tel": 77817168, "fax": 21359492, "email": "yassin_poi@yahoo.fr", "date": 1984, "adresse": "Boulevard de Gaulle", "image": "image2.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.152057256927733, 11.58784907797738 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE AL NOUR", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.147841980418505, 11.593497425097169 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE MODERNE", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.145108140724332, 11.593034552767998 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE LA NOUVELLE", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.146713729116144, 11.591768886242919 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE LA NATION", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.145860308259238, 11.591392802475468 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE L'INDEPENDANCE", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.146178532985545, 11.594162804070352 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE AL RAZI", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.147756336544845, 11.588458586205569 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE L'HOPITAL", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.132341559362288, 11.570585394265386 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE L'AEROPORT", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.14867966502986, 11.559418899426806 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE HAYABLEY", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.103471646350812, 11.566818030160752 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE BALBALA", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.111096646350816, 11.55812416158771 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE ANCIEN DE BALBALA", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null }, "geometry": { "type": "Point", "coordinates": [ 43.115165853168733, 11.562381337897975 ] } }
+]
+}
