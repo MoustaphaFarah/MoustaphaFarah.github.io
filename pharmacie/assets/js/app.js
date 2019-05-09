@@ -232,7 +232,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Téléphone</th><td>" + feature.properties.Tel + "</td></tr>" + "<tr><th>Fax</th><td>" + feature.properties.fax + "</td></tr>" + "<tr><th>Email</th><td>" + feature.properties.email + "</td></tr>" + "</td></tr>" + "<tr><th>Fondé en</th><td>" + feature.properties.date + "</td></tr>"+  "<tr><th>Adresse</th><td>" + feature.properties.adresse + "</td></tr>" +'<img src="'+ feature.properties.image +'" style="width:300px;height:300px;">'  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Téléphone</th><td>" + feature.properties.Tel + "</td></tr>" + "<tr><th>Fax</th><td>" + feature.properties.fax + "</td></tr>" + "<tr><th>Email</th><td>" + feature.properties.email + "</td></tr>" + "</td></tr>" + "<tr><th>Fondé en</th><td>" + feature.properties.date + "</td></tr>"+  "<tr><th>Adresse</th><td>" + feature.properties.adresse + "</td></tr>" +  "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"    +'<img src="'+ feature.properties.image +'" style="width:300px;height:300px;">'  +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
