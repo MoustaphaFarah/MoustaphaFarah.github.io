@@ -3,7 +3,7 @@
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
                                                                                 
 "features": [
-{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE LA CORNE D'AFRIQUE", "Tel": 21353444, "fax": 21350049, "email": "pharmaciecornedafrique@gmail.com", "date": 2008, "adresse": "Rue de Marseille", "image": "image1.jpg", "commune": "RASDIKA" }, "geometry": { "type": "Point", "coordinates": [ 43.147919829614445, 11.595424729971187 ] } },
+{ "type": "Feature", "properties": { "NAME": "PHARMACIE DE LA CORNE D'AFRIQUE", "Tel": 21353444, "fax": 21350049, "email": "pharmaciecornedafrique@gmail.com", "date": 2008, "adresse": "Rue de Marseille", "image": "image1.jpg", "commune": "RASDIKA" }, "geometry": { "type": "Point", "coordinates": [ 43.147959834054348, 11.595601416247421 ] } },
 { "type": "Feature", "properties": { "NAME": "PHARMACIE DE L'OCEAN INDIEN", "Tel": 77817168, "fax": 21359492, "email": "yassin_poi@yahoo.fr", "date": 1984, "adresse": "Boulevard de Gaulle", "image": "image2.jpg", "commune": "BOULAOS" }, "geometry": { "type": "Point", "coordinates": [ 43.152057256927733, 11.58784907797738 ] } },
 { "type": "Feature", "properties": { "NAME": "PHARMACIE AL NOUR", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null, "commune": "RASDIKA" }, "geometry": { "type": "Point", "coordinates": [ 43.147841980418505, 11.593497425097169 ] } },
 { "type": "Feature", "properties": { "NAME": "PHARMACIE MODERNE", "Tel": null, "fax": null, "email": null, "date": null, "adresse": null, "image": null, "commune": "RASDIKA" }, "geometry": { "type": "Point", "coordinates": [ 43.145108140724332, 11.593034552767998 ] } },
