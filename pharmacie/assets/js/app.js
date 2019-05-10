@@ -416,8 +416,8 @@ var groupedOverlays = {
     
   },
   "Reference": {
-    "Commune": boroughs,
-    "Route": subwayLines
+    "Commune": boroughs
+    
   }
 };
 
