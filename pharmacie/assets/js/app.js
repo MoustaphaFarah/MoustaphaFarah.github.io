@@ -386,7 +386,7 @@ var locateControl = L.control.locate({
   metric: false,
   strings: {
     title: "My location",
-    popup: "You are within {distance} {unit} from this point",
+    popup: "Votre position actuel",
     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
   },
   locateOptions: {
