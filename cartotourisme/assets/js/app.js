@@ -197,7 +197,7 @@ var pharma = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/mouga.geoJson", function (data) {
+$.getJSON("data/salut.geoJson", function (data) {
   pharma.addData(data);
   map.addLayer(pharmaLayer);
 });
