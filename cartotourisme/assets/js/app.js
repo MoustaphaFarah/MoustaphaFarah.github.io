@@ -146,7 +146,7 @@ var commune = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/benin_commune.geoJSON", function (data) {
+$.getJSON("data/benin_commune.geojson", function (data) {
   commune.addData(data);
 });
 
@@ -197,7 +197,7 @@ var pharma = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/salut.geoJSON", function (data) {
+$.getJSON("data/salut.geojson", function (data) {
   pharma.addData(data);
   map.addLayer(pharmaLayer);
 });
