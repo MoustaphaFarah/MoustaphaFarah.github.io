@@ -146,7 +146,7 @@ var commune = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/benin_commune", function (data) {
+$.getJSON("data/benin_commune.geoJSON", function (data) {
   commune.addData(data);
 });
 
@@ -179,7 +179,7 @@ var pharma = L.geoJson(null, {
       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Nom_du_site + "</td></tr>" + "<tr><th>Type de l'entité</th><td>" + feature.properties.Type_entite + "</td></tr>" + "<tr><th>Téléphone</th><td>" + feature.properties.Tel + "</td></tr>" + "<tr><th>email</th><td>" + feature.properties.E_Mail + "</td></tr>" + "</td></tr>" + "<tr><th>Boite postal</th><td>" + feature.properties.Boite_postal + "</td></tr>"  + '<img src="'+ feature.properties.image +'" style="width:300px;height:300px;">'  +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.Nom_du_site);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
@@ -314,7 +314,7 @@ var groupedOverlays = {
     
   },
   "Reference": {
-    "Commune": commune
+    "Commune d'Ouidah": commune
   }
 };
 
