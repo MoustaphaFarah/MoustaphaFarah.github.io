@@ -146,7 +146,7 @@ var boroughs = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.NOM,
+      name: layer.feature.properties.NAME,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
@@ -523,7 +523,8 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Commune</h4>"
+      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;Quartier</h4>"
+
     }
   }, {
     name: "poteau",
