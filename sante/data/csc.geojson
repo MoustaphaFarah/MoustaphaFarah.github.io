@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32638" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Etablissem": "Ambouli", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image1.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.137071, 11.562512 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Arhiba", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image2.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.135862, 11.580375 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Ibrahim Balala", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image5.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.146119, 11.57509 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Khor Bourhan", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image6.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.150744, 11.590748 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Balbala1", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image7.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.124462, 11.556881 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Balbala2", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image8.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.111936, 11.5511 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Doraleh", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image9.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.076956, 11.586068 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Wahle daba", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image12.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.106446, 11.556343 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Quartier 7", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Centre de soin communautaire", "Image": "image\/image14.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.141617, 11.575817 ] } }
+]
+}

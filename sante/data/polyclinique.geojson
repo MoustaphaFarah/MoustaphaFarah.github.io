@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Etablissem": "Polyclinique de Farah Had", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Polyclinique" }, "geometry": { "type": "Point", "coordinates": [ 43.150434, 11.579673 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Polyclinique de Hayabley", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Polyclinique" }, "geometry": { "type": "Point", "coordinates": [ 43.104001, 11.566771 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Polyclinique  de PK12", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Polyclinique" }, "geometry": { "type": "Point", "coordinates": [ 43.081789, 11.556914 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Polyclinique de Warabaleh", "Region": "Ville de Djibouti", "Zone": "Urbain", "Statut": "Public", "Type_1": "Polyclinique" }, "geometry": { "type": "Point", "coordinates": [ 43.086494, 11.570871 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "HOUMED MAKI IBRAHIM ( Einguella )", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Public", "Type_1": "Polyclinique" }, "geometry": { "type": "Point", "coordinates": [ 43.142582014062441, 11.58856434019064 ] } }
+]
+}

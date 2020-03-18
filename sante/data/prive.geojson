@@ -1,0 +1,19 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Etablissem": "FK Médical-SDMS", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.151262, "Latitude": 11.606993 }, "geometry": { "type": "Point", "coordinates": [ 43.151262, 11.606993 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "SOM clinique", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.148095, "Latitude": 11.595608 }, "geometry": { "type": "Point", "coordinates": [ 43.148095, 11.595608 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Pole médical", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.145999, "Latitude": 11.595526 }, "geometry": { "type": "Point", "coordinates": [ 43.145999, 11.595526 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "DR PATRICK GUILLARD MEDECIN", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.145508, "Latitude": 11.595743 }, "geometry": { "type": "Point", "coordinates": [ 43.145508, 11.595743 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Clinique AFFI", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.142642, "Latitude": 11.589456 }, "geometry": { "type": "Point", "coordinates": [ 43.142642, 11.589456 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "LA MAISON MEDICALE", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.141357, "Latitude": 11.589851 }, "geometry": { "type": "Point", "coordinates": [ 43.141357, 11.589851 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Djibouti Médical Center", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.142073, "Latitude": 11.573213 }, "geometry": { "type": "Point", "coordinates": [ 43.142073, 11.573213 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Cabinet Médicale Dr Mohamed Abdourahman", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.148360, "Latitude": 11.572969 }, "geometry": { "type": "Point", "coordinates": [ 43.14836, 11.572969 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Echographie DR HASSAN", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.151279, "Latitude": 11.571493 }, "geometry": { "type": "Point", "coordinates": [ 43.151279, 11.571493 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Clinique Acina", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.153398, "Latitude": 11.559614 }, "geometry": { "type": "Point", "coordinates": [ 43.153398, 11.559614 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Pédiatre Emma Acina", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.153526, "Latitude": 11.559447 }, "geometry": { "type": "Point", "coordinates": [ 43.153526, 11.559447 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Al Rahma", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.096361, "Latitude": 11.558715 }, "geometry": { "type": "Point", "coordinates": [ 43.096361, 11.558715 ] } }
+]
+}

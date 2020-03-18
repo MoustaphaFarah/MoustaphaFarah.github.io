@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Etablissem": "Hopital Peltier", "Region": "Ville de Djibouti", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image15.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.15346, 11.608426 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital Dar Al Hanan", "Region": "Ville de Djibouti", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image16.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.136084, 11.574547 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital chakib", "Region": "Ville de Djibouti", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image17.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.152391, 11.586821 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital de Balbala ( cheiko )", "Region": "Ville de Djibouti", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image18.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.112304, 11.549945 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital du Region d'  Arta", "Region": "District d'Arta", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image19.jpg" }, "geometry": { "type": "Point", "coordinates": [ 42.83607831480581, 11.517619075457262 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital du Region d'Ali Sabieh", "Region": "District d'Ali-Sabieh", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image20.jpg" }, "geometry": { "type": "Point", "coordinates": [ 42.69584, 11.150238 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital du Region de Dikhil", "Region": "District de Dikhil", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image21.jpg" }, "geometry": { "type": "Point", "coordinates": [ 42.373132, 11.105262 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital du Region d' Obock", "Region": "District d' Obock", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image22.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.289501, 11.962263 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Hopital de Region de Tadjourah", "Region": "District de Tadjourah", "Statut": "Public", "Type": "Centre  Medical Hospitalier", "Image": "image\/image24.jpg" }, "geometry": { "type": "Point", "coordinates": [ 42.88695, 11.7869 ] } }
+]
+}
