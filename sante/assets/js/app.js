@@ -545,7 +545,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par DJIB CARTO | </span>";
   return div;
 };
 map.addControl(attributionControl);
