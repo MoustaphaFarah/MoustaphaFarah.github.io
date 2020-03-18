@@ -574,7 +574,7 @@ var locateControl = L.control.locate({
   metric: false,
   strings: {
     title: "My location",
-    popup: "You are within {distance} {unit} from this point",
+    popup: "Votre position",
     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
   },
   locateOptions: {
@@ -607,8 +607,7 @@ var groupedOverlays = {
     "<img src='assets/img/confi.png' width='24' height='28'>&nbsp;Site de confinement": confiLayer
   },
   "Reference": {
-    "Commune": boroughs,
-    "Route": subwayLines
+    "Commune": boroughs
   }
 };
 
