@@ -222,7 +222,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/csc.geoJson", function (data) {
+$.getJSON("data/csc.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
