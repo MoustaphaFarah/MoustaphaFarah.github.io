@@ -14,6 +14,8 @@
 { "type": "Feature", "properties": { "Etablissem": "Echographie DR HASSAN", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.151279, "Latitude": 11.571493 }, "geometry": { "type": "Point", "coordinates": [ 43.151279, 11.571493 ] } },
 { "type": "Feature", "properties": { "Etablissem": "Clinique Acina", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.153398, "Latitude": 11.559614 }, "geometry": { "type": "Point", "coordinates": [ 43.153398, 11.559614 ] } },
 { "type": "Feature", "properties": { "Etablissem": "Pédiatre Emma Acina", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.153526, "Latitude": 11.559447 }, "geometry": { "type": "Point", "coordinates": [ 43.153526, 11.559447 ] } },
-{ "type": "Feature", "properties": { "Etablissem": "Al Rahma", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.096361, "Latitude": 11.558715 }, "geometry": { "type": "Point", "coordinates": [ 43.096361, 11.558715 ] } }
+{ "type": "Feature", "properties": { "Etablissem": "Al Rahma", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": 43.096361, "Latitude": 11.558715 }, "geometry": { "type": "Point", "coordinates": [ 43.096361, 11.558715 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Dr Abbate", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": null, "Latitude": null }, "geometry": { "type": "Point", "coordinates": [ 43.145852836482369, 11.587569922455254 ] } },
+{ "type": "Feature", "properties": { "Etablissem": "Clinique Maka Moukarama", "Region": "Djibouti ville", "Zone": "Urbain", "Statut": "Privé", "Longitude": null, "Latitude": null }, "geometry": { "type": "Point", "coordinates": [ 43.135383341708788, 11.578745302582378 ] } }
 ]
 }
