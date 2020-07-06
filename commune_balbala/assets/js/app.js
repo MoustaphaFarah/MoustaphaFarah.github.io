@@ -153,7 +153,7 @@ var boroughs = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/commune.geojson", function (data) {
+$.getJSON("data/mous.geojson", function (data) {
   boroughs.addData(data);
 });
 
@@ -203,7 +203,7 @@ var subwayLines = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/routes.geojson", function (data) {
+$.getJSON("data/limite_cheik_moussa.geojson", function (data) {
   subwayLines.addData(data);
 });
 
@@ -415,7 +415,8 @@ var groupedOverlays = {
     "<img src='marker.png' width='24' height='28'>&nbsp;Equipement": poteauLayer
   },
   "Reference": {
-    "Commune": boroughs
+    "QUARTIER": boroughs,
+     "LIMITE": subwayLines
   }
 };
 
