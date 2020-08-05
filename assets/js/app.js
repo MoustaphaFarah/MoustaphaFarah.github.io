@@ -1,4 +1,4 @@
-var map, featureList, boroughSearch = [], poteauSearch = [], compteurSearch = [], routeSearch = [];
+var map, featureList, boroughSearch = [], poteauSearch = [], compteurSearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -95,7 +95,7 @@ function syncSidebar() {
   poteau.eachLayer(function (layer) {
     if (map.hasLayer(poteauLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/csc.png"></td><td class="feature-name">' + layer.feature.properties.Etablissem + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/cmh.png"></td><td class="feature-name">' + layer.feature.properties.Etablissem + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -146,14 +146,14 @@ var boroughs = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.QUARTIER,
+      name: layer.feature.properties.Zone_Enque,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
     });
   }
 });
-$.getJSON("data/quartier.geojson", function (data) {
+$.getJSON("data/zone_etude_pk12.geojson", function (data) {
   boroughs.addData(data);
 });
 
@@ -168,8 +168,8 @@ var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
 var subwayLines = L.geoJson(null, {
   style: function (feature) {
       return {
-        color: "#A02005",
-        weight: 3,
+        color: "#F56741",
+        weight: 1,
         opacity: 1
       };
   },
@@ -181,22 +181,10 @@ var subwayLines = L.geoJson(null, {
           $("#feature-title").html(feature.properties.Route);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
-          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+
         }
       });
-
-
     }
-   
-
-      poteauSearch.push({
-        name: layer.feature.properties.Route,
-        source: "subwayLines ",
-        id: L.stamp(layer),
-        lat: layer.feature.geometry.coordinates[1],
-        lng: layer.feature.geometry.coordinates[0]
-      });
-
     layer.on({
       mouseover: function (e) {
         var layer = e.target;
@@ -213,13 +201,159 @@ var subwayLines = L.geoJson(null, {
         subwayLines.resetStyle(e.target);
       }
     });
-
-
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/secteur_1.geojson", function (data) {
   subwayLines.addData(data);
-   
+});
+ //Create a color dictionary based off of subway route pk 12
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var route_pk12 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#F6FE02",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        route_pk12.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_2.geojson", function (data) {
+  route_pk12.addData(data);
+});
+
+ //Create a color dictionary based off of subway route pk 12
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var routes_pk12 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#34FE02",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        routes_pk12.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_3.geojson", function (data) {
+  routes_pk12.addData(data);
+});
+
+ //Create a color dictionary based off of subway route pk 12
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var routees_pk12 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#02E3FE",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        routees_pk12.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_4.geojson", function (data) {
+  routees_pk12.addData(data);
 });
 
 /* Single marker cluster layer to hold all clusters */
@@ -236,30 +370,30 @@ var poteau = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/csc.png",
+        iconUrl: "marker.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.Etablissem,
+      title: feature.properties.NAME,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Etablissem + "</td></tr>" + "<tr><th>Région</th><td>" + feature.properties.Region + "</td></tr>" + "<tr><th>Statut</th><td>" + feature.properties.Statut + "</td></tr>" + "<tr><th>Type</th><td>" + feature.properties.Type_1 + "</td></tr>"  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.Etablissem);
+          $("#feature-title").html(feature.properties.NAME);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/csc.png"></td><td class="feature-name">' + layer.feature.properties.Etablissem + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       poteauSearch.push({
-        name: layer.feature.properties.Etablissem,
-        address: layer.feature.properties.Type_1,
+        name: layer.feature.properties.repondant,
+        address: layer.feature.properties.localite,
         source: "poteau",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -268,7 +402,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/polyclinique.geojson", function (data) {
+$.getJSON("data/enquetes.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -279,29 +413,29 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/cmh.png",
+        iconUrl: "assets/img/crime.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.Etablissem,
+      title: feature.properties.NAME,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Etablissem + "</td></tr>" + "<tr><th>Région</th><td>" + feature.properties.Region + "</td></tr>" + "<tr><th>Statut</th><td>" + feature.properties.Statut + "</td></tr>"  + "<tr><th>Type</th><td>" + feature.properties.Type + "</td></tr>"   + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Type</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Lieu</th><td>" + feature.properties.Lieu + "</td></tr>" + "<tr><th>Heure</th><td>" + feature.properties.heure + "</td></tr>"  + "<tr><th>Description</th><td>" + feature.properties.Descrip + "</td></tr>"+  "<tr><th>Date</th><td>" + feature.properties.Date+ "</td></tr>"   +  '<img src="'+ feature.properties.Picture +'" style="width:300px;height:300px;">'  + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.Etablissem);
+          $("#feature-title").html(feature.properties.NAME);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/cmh.png"></td><td class="feature-name">' + layer.feature.properties.Etablissem + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.Etablissem,
+        name: layer.feature.properties.NAME,
         address: layer.feature.properties.Lieu,
         source: "compteur",
         id: L.stamp(layer),
@@ -372,7 +506,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par Equipe d'adressage  | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -427,11 +561,15 @@ var baseLayers = {
 
 var groupedOverlays = {
   "  Points d’intérêt ": {
-    "<img src='assets/img/csc.png' width='24' height='28'>&nbsp;polyclinique": poteauLayer
+    "<img src='marker.png' width='24' height='28'>&nbsp;Enquete": poteauLayer
   },
   "Reference": {
-    "Commune": boroughs,
-    "Route": subwayLines
+    "Zone d'etude": boroughs,
+     "Secteur 1": subwayLines,
+     "Secteur 2": route_pk12,
+     "Secteur 3": routes_pk12,
+     "Secteur 4": routees_pk12
+
   }
 };
 
@@ -494,15 +632,6 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
-  var routeBH = new Bloodhound({
-    name: "subwayLines ",
-    datumTokenizer: function (d) {
-      return Bloodhound.tokenizers.whitespace(d.name);
-    },
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: routeSearch,
-    limit: 10
-  });
   var geonamesBH = new Bloodhound({
     name: "GeoNames",
     datumTokenizer: function (d) {
@@ -536,7 +665,6 @@ $(document).one("ajaxStop", function () {
   boroughsBH.initialize();
   poteauBH.initialize();
   compteurBH.initialize();
-  routeBH.initialize();
   geonamesBH.initialize();
 
   /* instantiate the typeahead UI */
@@ -549,14 +677,15 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Commune</h4>"
+      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;Quartier</h4>"
+
     }
   }, {
     name: "poteau",
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='csc.png' width='25' height='25'>&nbsp;polyclinique</h4>",
+      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp;ENQUETE</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -564,18 +693,10 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='cmh.png' width='35' height='30'>&nbsp;Centre médical hospitalier</h4>",
+      header: "<h4 class='typeahead-header'><img src='crime.jpg' width='35' height='30'>&nbsp;Scene du crime</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
-  },{
-    name: "subwayLines",
-    displayKey: "name",
-    source: compteurBH.ttAdapter(),
-    templates: {
-      header: "<h4 class='typeahead-header'><img src='cmh.png' width='35' height='30'>&nbsp;Centre médical hospitalier</h4>",
-      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;"].join(""))
-    }
-  },{
+  }, {
     name: "GeoNames",
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
@@ -604,16 +725,6 @@ $(document).one("ajaxStop", function () {
         map._layers[datum.id].fire("click");
       }
     }
-     if (datum.source === "subwayLines") {
-      if (!map.hasLayer(subwayLinesLayer)) {
-        map.addLayer(subwayLinesLayer);
-      }
-      map.setView([datum.lat, datum.lng], 17);
-      if (map._layers[datum.id]) {
-        map._layers[datum.id].fire("click");
-      }
-    }
-
     if (datum.source === "GeoNames") {
       map.setView([datum.lat, datum.lng], 14);
     }
