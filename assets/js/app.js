@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -356,6 +356,312 @@ $.getJSON("data/secteur_4.geojson", function (data) {
   routees_pk12.addData(data);
 });
 
+
+ //Create a color dictionary based off of secteur 1 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_1_zone_2 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#F7698E",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_1_zone_2.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_1_zone_2.geojson", function (data) {
+  secteur_1_zone_2.addData(data);
+});
+
+
+ //Create a color dictionary based off of secteur 2 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_2_zone_2 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#81F769",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_2_zone_2.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_2_zone_2.geojson", function (data) {
+  secteur_2_zone_2.addData(data);
+});
+
+
+//Create a color dictionary based off of secteur 2 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_3_zone_2 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#7686F9",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_3_zone_2.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_3_zone_2.geojson", function (data) {
+  secteur_3_zone_2.addData(data);
+});
+
+
+//Create a color dictionary based off of secteur 2 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_1_zone_3 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#FFF633",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_1_zone_3.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_1_zone_3.geojson", function (data) {
+  secteur_1_zone_3.addData(data);
+});
+
+//Create a color dictionary based off of secteur 2 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_2_zone_3 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#33FF3C",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_2_zone_3.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_2_zone_3.geojson", function (data) {
+  secteur_2_zone_3.addData(data);
+});
+
+
+//Create a color dictionary based off of secteur 2 zone 2
+var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
+    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
+    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
+    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
+    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
+    "Q":"#ffff00", "R":"#ffff00" };
+
+var secteur_3_zone_3 = L.geoJson(null, {
+  style: function (feature) {
+      return {
+        color: "#334FFF",
+        weight: 5,
+        opacity: 1
+      };
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.Revetement);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        secteur_3_zone_3.resetStyle(e.target);
+      }
+    });
+  }
+});
+$.getJSON("data/secteur_3_zone_3.geojson", function (data) {
+  secteur_3_zone_3.addData(data);
+});
+
+
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -375,13 +681,13 @@ var poteau = L.geoJson(null, {
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.NAME,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>"   +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilet + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -390,7 +696,7 @@ var poteau = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       poteauSearch.push({
         name: layer.feature.properties.repondant,
         address: layer.feature.properties.localite,
@@ -413,30 +719,30 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/crime.png",
+        iconUrl: "marker.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.NAME,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Type</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Lieu</th><td>" + feature.properties.Lieu + "</td></tr>" + "<tr><th>Heure</th><td>" + feature.properties.heure + "</td></tr>"  + "<tr><th>Description</th><td>" + feature.properties.Descrip + "</td></tr>"+  "<tr><th>Date</th><td>" + feature.properties.Date+ "</td></tr>"   +  '<img src="'+ feature.properties.Picture +'" style="width:300px;height:300px;">'  + "<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilet + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.repondant);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.Lieu,
+         name: layer.feature.properties.repondant,
+        address: layer.feature.properties.localite,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -445,7 +751,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/enquete_zone_2.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -561,14 +867,22 @@ var baseLayers = {
 
 var groupedOverlays = {
   "  Points d’intérêt ": {
-    "<img src='marker.png' width='24' height='28'>&nbsp;Enquete": poteauLayer
+    "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 1": poteauLayer,
+     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 2": compteurLayer
   },
   "Reference": {
     "Zone d'etude": boroughs,
-     "Secteur 1": subwayLines,
-     "Secteur 2": route_pk12,
-     "Secteur 3": routes_pk12,
-     "Secteur 4": routees_pk12
+     "Secteur 1; zone 1": subwayLines,
+     "Secteur 2; zone 1": route_pk12,
+     "Secteur 3; zone 1": routes_pk12,
+     "Secteur 4; zone 1": routees_pk12,
+     "Secteur 1; zone 2": secteur_1_zone_2,
+     "Secteur 2; zone 2": secteur_2_zone_2,
+     "Secteur 3; zone 2": secteur_3_zone_2,
+     "Secteur 1; zone 3": secteur_1_zone_3,
+      "Secteur 2; zone 3": secteur_2_zone_3,
+      "Secteur 3; zone 3": secteur_3_zone_3
+
 
   }
 };
@@ -685,7 +999,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp;ENQUETE</h4>",
+      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp;ENQUETE zone 1</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -693,7 +1007,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='crime.jpg' width='35' height='30'>&nbsp;Scene du crime</h4>",
+      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp; Enquete zone 2</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
