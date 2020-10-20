@@ -1,4 +1,4 @@
-var map, featureList, boroughSearch = [], poteauSearch = [], compteurSearch = [] , zoneSearch = [];
+var map, featureList, boroughSearch = [], poteauSearch = [], compteurSearch = [] , zoneSearch = [], zone4Search = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -117,6 +117,14 @@ function syncSidebar() {
     }
   });
 
+ /* Loop through compteurlayer and add only features which are in the map bounds */
+  zone4.eachLayer(function (layer) {
+    if (map.hasLayer(zone4Layer)) {
+      if (map.getBounds().contains(layer.getLatLng())) {
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      }
+    }
+  });
   /* Update list.js featureList */
   featureList = new List("features", {
     valueNames: ["feature-name"]
@@ -963,6 +971,50 @@ $.getJSON("data/enquete_zone_3.geojson", function (data) {
 });
 
 
+/* Empty layer placeholder to add to layer control for listening when to add/remove compteur to markerClusters layer */
+var zone4Layer = L.geoJson(null);
+var zone4 = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "marker.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.repondant,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexrepondant + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalite + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilette + "</td></tr>" + "</td></tr>" + "<tr><th>Numero de téléphone</th><td>" + feature.properties.telephon1 + "</td></tr>" + "</td></tr>" + '<img src="'+ feature.properties.photo+'"style ="width:300px;height:300px;">'  +"<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.repondant);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      zone4Search.push({
+         name: layer.feature.properties.repondant,
+        address: layer.feature.properties.localite,
+        source: "zone4",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/zone_4.geojson", function (data) {
+  zone4.addData(data);
+});
+
+
+
 map = L.map("map", {
   zoom: 13,
   center: [11.5806, 43.1457],
@@ -985,6 +1037,11 @@ map.on("overlayadd", function(e) {
     markerClusters.addLayer(zone);
     syncSidebar();
   }
+ if (e.layer === zone4Layer) {
+    markerClusters.addLayer(zone4);
+    syncSidebar();
+  }
+
 });
 
 map.on("overlayremove", function(e) {
@@ -998,6 +1055,10 @@ map.on("overlayremove", function(e) {
   }
   if (e.layer === zoneLayer) {
     markerClusters.removeLayer(zone);
+    syncSidebar();
+  }
+  if (e.layer === zone4Layer) {
+    markerClusters.removeLayer(zone4);
     syncSidebar();
   }
 });
@@ -1071,9 +1132,9 @@ var locateControl = L.control.locate({
 
 /* Larger screens get expanded layer control and visible sidebar */
 if (document.body.clientWidth <= 767) {
-  var isCollapsed = true;
+  var isCollapsed = false;
 } else {
-  var isCollapsed = true;
+  var isCollapsed = false;
 }
 
 var baseLayers = {
@@ -1085,7 +1146,8 @@ var groupedOverlays = {
   "  Points d’intérêt ": {
     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 1": poteauLayer,
      "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 2": compteurLayer,
-     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 3": zoneLayer
+     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 3": zoneLayer,
+     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 4": zone4Layer
   },
   "Reference": {
     "Zone d'etude": boroughs,
@@ -1174,6 +1236,17 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
+var zone4BH = new Bloodhound({
+    name: "zone4",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: zone4Search,
+    limit: 10
+  });
+
+
   var geonamesBH = new Bloodhound({
     name: "GeoNames",
     datumTokenizer: function (d) {
@@ -1208,6 +1281,7 @@ $(document).one("ajaxStop", function () {
   poteauBH.initialize();
   compteurBH.initialize();
   zoneBH.initialize();
+  zone4BH.initialize();
   geonamesBH.initialize();
 
   /* instantiate the typeahead UI */
@@ -1247,7 +1321,15 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp; Enquete zone 3</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
-  }, {
+  },{
+    name: "zone4",
+    displayKey: "name",
+    source: zone4BH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp; Enquete zone 4</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
     name: "GeoNames",
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
@@ -1279,6 +1361,16 @@ $(document).one("ajaxStop", function () {
  if (datum.source === "zone") {
       if (!map.hasLayer(zoneLayer)) {
         map.addLayer(zoneLayer);
+      }
+      map.setView([datum.lat, datum.lng], 17);
+      if (map._layers[datum.id]) {
+        map._layers[datum.id].fire("click");
+      }
+    }
+
+ if (datum.source === "zone4") {
+      if (!map.hasLayer(zone4Layer)) {
+        map.addLayer(zone4Layer);
       }
       map.setView([datum.lat, datum.lng], 17);
       if (map._layers[datum.id]) {
