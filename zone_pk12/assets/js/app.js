@@ -881,7 +881,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/enquetes.geojson", function (data) {
+$.getJSON("data/", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -924,7 +924,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/enquete_zone_2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   compteur.addData(data);
 });
 
@@ -966,7 +966,7 @@ var zone = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/enquete_zone_3.geojson", function (data) {
+$.getJSON("data/", function (data) {
   zone.addData(data);
 });
 
