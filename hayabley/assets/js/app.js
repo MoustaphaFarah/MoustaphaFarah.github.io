@@ -977,9 +977,9 @@ var locateControl = L.control.locate({
 
 /* Larger screens get expanded layer control and visible sidebar */
 if (document.body.clientWidth <= 767) {
-  var isCollapsed = false;
+  var isCollapsed = true;
 } else {
-  var isCollapsed = false;
+  var isCollapsed = true;
 }
 
 var baseLayers = {
