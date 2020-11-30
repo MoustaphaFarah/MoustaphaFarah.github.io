@@ -1296,7 +1296,7 @@ var baseLayers = {
 var groupedOverlays = {
   "  Points d’intérêt ": {
    
-     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete Zone 4": zone4Layer
+     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete PK 12": zone4Layer
   },
   "Reference": {
     "Zone d'etude": boroughs,
