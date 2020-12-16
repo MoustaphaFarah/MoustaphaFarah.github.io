@@ -1299,23 +1299,8 @@ var groupedOverlays = {
      "<img src='marker.png' width='24' height='28'>&nbsp;Enquete PK 12": zone4Layer
   },
   "Reference": {
-    "Zone d'etude": boroughs,
-     "Secteur 1; zone 1": subwayLines,
-     "Secteur 2; zone 1": route_pk12,
-     "Secteur 3; zone 1": routes_pk12,
-     "Secteur 4; zone 1": routees_pk12,
-     "Secteur 1; zone 2": secteur_1_zone_2,
-     "Secteur 2; zone 2": secteur_2_zone_2,
-     "Secteur 3; zone 2": secteur_3_zone_2,
-     "Secteur 1; zone 3": secteur_1_zone_3,
-      "Secteur 2; zone 3": secteur_2_zone_3,
-      "Secteur 3; zone 3": secteur_3_zone_3,
-      "Secteur 1; zone 4": secteur_1_zone_4,
-      "Secteur 2; zone 4": secteur_2_zone_4,
-      "Secteur 3; zone 4": secteur_3_zone_4,
-      "Secteur 1; zone 5": secteur_1_zone_5,
-      "Secteur 2; zone 5": secteur_2_zone_5,
-      "Secteur 3; zone 5": secteur_3_zone_5
+    "Zone d'etude": boroughs
+   
 
   }
 };
