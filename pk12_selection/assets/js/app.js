@@ -148,7 +148,7 @@ var Satellite = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services
 var highlight = L.geoJson(null);
 var highlightStyle = {
   stroke: false,
-  fillColor: "#00FFFF",
+  fillColor: "#FF0000",
   fillOpacity: 0.7,
   radius: 10
 };
