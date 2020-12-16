@@ -121,7 +121,7 @@ function syncSidebar() {
   zone4.eachLayer(function (layer) {
     if (map.hasLayer(zone4Layer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.Nom_du_Rep + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.nom_du_rep + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -1133,24 +1133,24 @@ var zone4 = L.geoJson(null, {
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.Nom_du_Rep,
+      title: feature.properties.nom_du_rep,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_du_Rep + "</td></tr>" + "<tr><th>Nom du chef de Ménage</th><td>" + feature.properties.le_Nom_du + "</td></tr>" +   "<tr><th>AGE</th><td>" + feature.properties.L_Age_du_c + "</td></tr>" + "<tr><th>Nationalité</th><td>" + feature.properties.Nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Nombre des personnes résidant dans le ménage</th><td>" + feature.properties.Nombres_de + "</td></tr>" + "</td></tr>"    +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom_du_rep + "</td></tr>" + "<tr><th>Nom du chef de Ménage</th><td>" + feature.properties.le_nom_du + "</td></tr>" +   "<tr><th>AGE</th><td>" + feature.properties.l_age_du_c + "</td></tr>" + "<tr><th>Nationalité</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Nombre des personnes résidant dans le ménage</th><td>" + feature.properties.nombres_de + "</td></tr>" + "</td></tr>"  + "<tr><th>Numero de téléphone</th><td>" + feature.properties.numero + "</td></tr>" + "</td></tr>"    +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.Nom_du_Rep);
+          $("#feature-title").html(feature.properties.nom_du_rep);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.Nom_du_Rep + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.nom_du_rep + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       zone4Search.push({
-         name: layer.feature.properties.Nom_du_Rep,
+         name: layer.feature.properties.nom_du_rep,
         address: layer.feature.properties.localite,
         source: "zone4",
         id: L.stamp(layer),
