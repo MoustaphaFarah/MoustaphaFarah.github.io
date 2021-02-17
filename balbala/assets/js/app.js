@@ -253,7 +253,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/Balbala.geojson", function (data) {
+$.getJSON("data/balbala.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
