@@ -95,7 +95,7 @@ function syncSidebar() {
   poteau.eachLayer(function (layer) {
     if (map.hasLayer(poteauLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -146,14 +146,14 @@ var boroughs = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.Zone_Enque,
+      name: layer.feature.properties.NOM,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
     });
   }
 });
-$.getJSON("data/zone_etude_pk12.geojson", function (data) {
+$.getJSON("data/commune.geojson", function (data) {
   boroughs.addData(data);
 });
 
@@ -168,8 +168,8 @@ var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
 var subwayLines = L.geoJson(null, {
   style: function (feature) {
       return {
-        color: "#F56741",
-        weight: 1,
+        color: "#A02005",
+        weight: 3,
         opacity: 1
       };
   },
@@ -203,58 +203,10 @@ var subwayLines = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/ilot_pk12.geojson", function (data) {
+$.getJSON("data/routes.geojson", function (data) {
   subwayLines.addData(data);
 });
- //Create a color dictionary based off of subway route pk 12
-var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
-    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
-    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
-    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
-    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
-    "Q":"#ffff00", "R":"#ffff00" };
 
-var route_pk12 = L.geoJson(null, {
-  style: function (feature) {
-      return {
-        color: "#6E6866",
-        weight: 5,
-        opacity: 1
-      };
-  },
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.Revetement + "</td></tr>"  + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.Revetement);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-
-        }
-      });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          weight: 3,
-          color: "#00FFFF",
-          opacity: 1
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        route_pk12.resetStyle(e.target);
-      }
-    });
-  }
-});
-$.getJSON("data/route_pk12.geojson", function (data) {
-  route_pk12.addData(data);
-});
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -269,30 +221,30 @@ var poteau = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "marker.png",
+        iconUrl: "assets/img/marker.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.NAME,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexrepondant + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalite + "</td></tr>" + "</td></tr>"  + "<tr><th>Localité</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>"   +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.repondant);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/poteau.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       poteauSearch.push({
         name: layer.feature.properties.repondant,
-        address: layer.feature.properties.localite,
+        address: layer.feature.properties.Quartier,
         source: "poteau",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -301,7 +253,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/sagar.geojson", function (data) {
+$.getJSON("data/Balbala.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -312,7 +264,7 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/crime.png",
+        iconUrl: "assets/img/compteur.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
@@ -323,7 +275,7 @@ var compteur = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Type</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Lieu</th><td>" + feature.properties.Lieu + "</td></tr>" + "<tr><th>Heure</th><td>" + feature.properties.heure + "</td></tr>"  + "<tr><th>Description</th><td>" + feature.properties.Descrip + "</td></tr>"+  "<tr><th>Date</th><td>" + feature.properties.Date+ "</td></tr>"   +  '<img src="'+ feature.properties.Picture +'" style="width:300px;height:300px;">'  + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero de contrat</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Nom</th><td>" + feature.properties.Nom + "</td></tr>" + "<tr><th>Numero du client</th><td>" + feature.properties.Num_client + "</td></tr>"  + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"+  "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>"  + "<tr><th>Numero du poteau</th><td>" + feature.properties.poteau + "</td></tr>" + "<tr><th>Numero du Telephone</th><td>" + feature.properties.Num_tel + "</td></tr>"  +  '<img src="'+ feature.properties.img +'" style="width:300px;height:300px;">'  + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -332,10 +284,10 @@ var compteur = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/crime.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.poteau + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.NAME,
-        address: layer.feature.properties.Lieu,
+        name: layer.feature.properties.poteau,
+        address: layer.feature.properties.Nom,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -344,7 +296,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/balbala.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -405,7 +357,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par Equipe d'adressage  | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -460,12 +412,10 @@ var baseLayers = {
 
 var groupedOverlays = {
   "  Points d’intérêt ": {
-    "<img src='marker.png' width='24' height='28'>&nbsp;Enquete": poteauLayer
+    "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menage": poteauLayer
   },
   "Reference": {
-    "Zone d'etude": boroughs,
-     "ilot": subwayLines,
-     "Route": route_pk12
+    "Quartier": boroughs
   }
 };
 
@@ -573,15 +523,14 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: boroughsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;Quartier</h4>"
-
+      header: "<h4 class='typeahead-header'>Commune</h4>"
     }
   }, {
     name: "poteau",
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp;ENQUETE</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/poteau.png' width='24' height='28'>&nbsp;Poteau</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -589,7 +538,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='crime.jpg' width='35' height='30'>&nbsp;Scene du crime</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/icone.png' width='24' height='28'>&nbsp;Abonnes</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
