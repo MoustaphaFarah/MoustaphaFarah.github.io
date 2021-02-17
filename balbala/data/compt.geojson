@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "compt",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Num_client": 215392, "NAME": 209866, "Nom": "Hassan Farah Djama", "commune": "Balbala", "quartier": "Balbala ancien", "poteau": 123456, "Num_tel": 77865086, "img": "image1.jpg" }, "geometry": { "type": "Point", "coordinates": [ 43.118596531188288, 11.550526130091722 ] } }
+]
+}
