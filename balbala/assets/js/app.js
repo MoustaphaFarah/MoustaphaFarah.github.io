@@ -531,7 +531,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/poteau.png' width='24' height='28'>&nbsp;Poteau</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demuni</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -539,7 +539,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/icone.png' width='24' height='28'>&nbsp;Abonnes</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/map1.png' width='24' height='28'>&nbsp;Malade</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
