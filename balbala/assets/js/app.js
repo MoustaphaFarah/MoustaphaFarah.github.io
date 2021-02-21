@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -232,7 +232,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>"   + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.repondant);
@@ -253,7 +253,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/quartier.geojson", function (data) {
+$.getJSON("data/malade.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -264,29 +264,29 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/compteur.png",
+        iconUrl: "assets/img/map1.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.NAME,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero de contrat</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Nom</th><td>" + feature.properties.Nom + "</td></tr>" + "<tr><th>Numero du client</th><td>" + feature.properties.Num_client + "</td></tr>"  + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"+  "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>"  + "<tr><th>Numero du poteau</th><td>" + feature.properties.poteau + "</td></tr>" + "<tr><th>Numero du Telephone</th><td>" + feature.properties.Num_tel + "</td></tr>"  +  '<img src="'+ feature.properties.img +'" style="width:300px;height:300px;">'  + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.repondant + "</td></tr>" +  '<img src="'+ feature.properties.photo +'" style="width:300px;height:300px;">'  + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.repondant);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.poteau + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.poteau,
+        name: layer.feature.properties.repondant,
         address: layer.feature.properties.Nom,
         source: "compteur",
         id: L.stamp(layer),
@@ -296,7 +296,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/balbala.geojson", function (data) {
+$.getJSON("data/demunis.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -357,7 +357,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par GIS PRESIDENCE | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -412,7 +412,8 @@ var baseLayers = {
 
 var groupedOverlays = {
   "  Points d’intérêt ": {
-    "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menage": poteauLayer
+    "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demunis": poteauLayer,
+    "<img src='assets/img/map1.png' width='24' height='28'>&nbsp;Malade": compteurLayer
   },
   "Reference": {
     "Quartier": boroughs
@@ -530,7 +531,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menage</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/poteau.png' width='24' height='28'>&nbsp;Poteau</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
