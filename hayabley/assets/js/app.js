@@ -994,17 +994,7 @@ var groupedOverlays = {
 
   },
   "Reference": {
-    "Zone d'etude": boroughs,
-     "Hayabley; zone 1": subwayLines,
-     "Hayabley; zone 2": hayabley_zone2,
-     "Hayabley; zone 3": hayabley_zone3,
-     "Dogley; zone 1": dogley_zone1,
-     "dogley; zone 2": dogley_zone2,
-     "Layabley; zone 1": layabley_zone1,
-     "Layabley; zone 2": layabley_zone2,
-     "Layabley; zone 3": layabley_zone3,
-      "Warabley; zone 1": warabley_zone1,
-      "Warabley; zone 2": warabley_zone2
+    
 
   }
 };
