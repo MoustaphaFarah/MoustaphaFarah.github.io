@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -403,7 +403,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilet + "</td></tr>" + "</td></tr>"   +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -415,7 +415,7 @@ var poteau = L.geoJson(null, {
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       poteauSearch.push({
         name: layer.feature.properties.repondant,
-        address: layer.feature.properties.localite,
+        address: layer.feature.properties.Quartier,
         source: "poteau",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -424,7 +424,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/menage_final.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -435,7 +435,7 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "marker.png",
+        iconUrl: "map1.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
@@ -446,7 +446,7 @@ var compteur = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilet + "</td></tr>" + "</td></tr>"   +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.repondant);
@@ -455,10 +455,10 @@ var compteur = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
          name: layer.feature.properties.repondant,
-        address: layer.feature.properties.localite,
+        address: layer.feature.properties.Quartier,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -467,7 +467,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/menage_selection.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -687,7 +687,8 @@ var baseLayers = {
 
 var groupedOverlays = {
   "  Points d’intérêt ": {
-   
+   "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menage_complet": poteauLayer,
+   "<img src='assets/img/map1.png' width='24' height='28'>&nbsp;Menage_selection": compteurLayer
      
   },
   "Reference": {
@@ -835,7 +836,7 @@ var zone4BH = new Bloodhound({
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp;ENQUETE zone 1</h4>",
+      header: "<h4 class='typeahead-header'><img src='marker.png' width='35' height='30'>&nbsp;Menage complet </h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -843,7 +844,7 @@ var zone4BH = new Bloodhound({
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp; Enquete zone 2</h4>",
+      header: "<h4 class='typeahead-header'><img src='map1.png' width='35' height='30'>&nbsp; Menage selectionné</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   },{
