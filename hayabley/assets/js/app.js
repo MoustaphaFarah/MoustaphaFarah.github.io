@@ -171,7 +171,7 @@ var boroughs = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/hayabley.geojson", function (data) {
+$.getJSON("data/zone_etude.geojson", function (data) {
   boroughs.addData(data);
 });
 
