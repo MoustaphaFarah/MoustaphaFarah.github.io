@@ -446,7 +446,7 @@ var compteur = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "</td></tr>"   +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.repondant);
@@ -531,7 +531,7 @@ var zone4 = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.Age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.Nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>"  + '<img src="'+ feature.properties.photo+'"style ="width:300px;height:300px;">'  +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>"+ + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.localite + "</td></tr>" + "</td></tr>" + "<tr><th>CNSS</th><td>" + feature.properties.cnss + "</td></tr>" + "</td></tr>" + "<tr><th>Type d'occupation</th><td>" + feature.properties.logement1 + "</td></tr>" + "</td></tr>"  + "<tr><th>Coupon alimentaire</th><td>" + feature.properties.aide1 + "</td></tr>" + "</td></tr>" + "<tr><th>Type de toilette</th><td>" + feature.properties.typetoilet + "</td></tr>" + "</td></tr>"    +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.repondant);
