@@ -693,10 +693,7 @@ var groupedOverlays = {
   },
   "Reference": {
     "Zone d'etude": boroughs,
-     "Seceteur 1": subwayLines,
-     "Secteur 2": route_pk12,
-     "Secteur 3": routes_pk12,
-     "Secteur 4": routees_pk12,
+   
      
 
   }
