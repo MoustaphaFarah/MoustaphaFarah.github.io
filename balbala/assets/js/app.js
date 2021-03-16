@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/ma.png"></td><td class="feature-name">' + layer.feature.properties.Nom_Prenom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -139,19 +139,49 @@ var boroughs = L.geoJson(null, {
   style: function (feature) {
     return {
       color: "black",
-      fill: false,
+      fill: true,
       opacity: 1,
-      clickable: false
+      clickable: true
     };
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.NOM,
+      name: layer.feature.properties.NAME,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
     });
+
+ if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.NAME+ "</td></tr>"  + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+
+        }
+      });
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 3,
+          color: "#00FFFF",
+          opacity: 1
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+      },
+      mouseout: function (e) {
+        boroughs.resetStyle(e.target);
+      }
+    });
+
   }
+
 });
 $.getJSON("data/commune.geojson", function (data) {
   boroughs.addData(data);
@@ -253,7 +283,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/quartier.geojson", function (data) {
+$.getJSON("data/", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -264,30 +294,30 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/compteur.png",
+        iconUrl: "assets/img/ma.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.NAME,
+      title: feature.properties.Nom_Prenom,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Numero de contrat</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Nom</th><td>" + feature.properties.Nom + "</td></tr>" + "<tr><th>Numero du client</th><td>" + feature.properties.Num_client + "</td></tr>"  + "<tr><th>Commune</th><td>" + feature.properties.commune + "</td></tr>"+  "<tr><th>Quartier</th><td>" + feature.properties.quartier + "</td></tr>"  + "<tr><th>Numero du poteau</th><td>" + feature.properties.poteau + "</td></tr>" + "<tr><th>Numero du Telephone</th><td>" + feature.properties.Num_tel + "</td></tr>"  +  '<img src="'+ feature.properties.img +'" style="width:300px;height:300px;">'  + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_Prenom + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.Quartiers + "</td></tr>"    + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
+          $("#feature-title").html(feature.properties.Nom_Prenom);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/compteur.png"></td><td class="feature-name">' + layer.feature.properties.poteau + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/ma.png"></td><td class="feature-name">' + layer.feature.properties.Nom_Prenom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.poteau,
-        address: layer.feature.properties.Nom,
+        name: layer.feature.properties.Nom_Prenom,
+        address: layer.feature.properties.Quartiers,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -296,7 +326,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/balbala.geojson", function (data) {
+$.getJSON("data/", function (data) {
   compteur.addData(data);
 });
 
@@ -357,7 +387,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par Moustapha & Farhan | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développer par SIG PRESIDDENCE | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -411,9 +441,7 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
-  "  Points d’intérêt ": {
-    "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menages demunies": poteauLayer
-  },
+
   "Reference": {
     "Quartier": boroughs
   }
