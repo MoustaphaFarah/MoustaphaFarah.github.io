@@ -121,7 +121,7 @@ function syncSidebar() {
   zone4.eachLayer(function (layer) {
     if (map.hasLayer(zone4Layer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -1128,7 +1128,7 @@ var zone4 = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "marker.png",
+        iconUrl: "assets/img/marker.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
@@ -1148,7 +1148,7 @@ var zone4 = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       zone4Search.push({
          name: layer.feature.properties.repondant,
         address: layer.feature.properties.localite,
@@ -1296,7 +1296,7 @@ var baseLayers = {
 var groupedOverlays = {
   "  Points d’intérêt ": {
    
-     "<img src='marker.png' width='24' height='28'>&nbsp;Enquete PK 12": zone4Layer
+     "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Enquete PK 12": zone4Layer
   },
   "Reference": {
     "Zone d'etude": boroughs,
