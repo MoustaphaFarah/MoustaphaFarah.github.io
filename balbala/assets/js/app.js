@@ -262,7 +262,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "<tr><th>Situation matrimonial</th><td>" + feature.properties.CIN + "</td></tr>" + "<tr><th>Numero</th><td>" + feature.properties.num_per + "</td></tr>" + "<tr><th>Numero du Ceni</th><td>" + feature.properties.num_ceni + "<tr><th>Nom du conseil</th><td>" + feature.properties.nom_consei + "<tr><th>Numero du conseil</th><td>" + feature.properties.num_consei + "</td></tr>" + "</td></tr>" + "</td></tr>" + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "<tr><th>Situation matrimonial</th><td>" + feature.properties.CIN + "</td></tr>" + "<tr><th>Numero</th><td>" + feature.properties.num_per + "</td></tr>" + "<tr><th>Numero du Ceni</th><td>" + feature.properties.num_ceni + "<tr><th>Nom du conseil</th><td>" + feature.properties.nom_consei + "<tr><th>Numero du conseil</th><td>" + feature.properties.num_consei + "</td></tr>" + "</td></tr>" + "</td></tr>"   +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.nom);
