@@ -221,7 +221,7 @@ var subwayLines = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/barwako_secteur1.geojson", function (data) {
+$.getJSON("data/", function (data) {
   subwayLines.addData(data);
 });
  //Create a color dictionary based off of subway route pk 12
@@ -270,7 +270,7 @@ var route_pk12 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/barwako_secteur2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   route_pk12.addData(data);
 });
 
@@ -320,7 +320,7 @@ var routes_pk12 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/barwako_secteur3.geojson", function (data) {
+$.getJSON("data/", function (data) {
   routes_pk12.addData(data);
 });
 
@@ -370,7 +370,7 @@ var routees_pk12 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/barwako_secteur4.geojson", function (data) {
+$.getJSON("data/", function (data) {
   routees_pk12.addData(data);
 });
 
@@ -531,7 +531,7 @@ var zone4 = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>" + "<tr><th>Telephone</th><td>" + feature.properties.telephon1 + "</td></tr>" + "</td></tr>"  + '<img src="'+ feature.properties.photo+'"style ="width:300px;height:300px;">'  +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexreponda + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>" + "<tr><th>Telephone</th><td>" + feature.properties.telephon1 + "</td></tr>" + "</td></tr>"    +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.repondant);
@@ -693,11 +693,7 @@ var groupedOverlays = {
      
   },
   "Reference": {
-    "Zone d'etude": boroughs,
-     "Seceteur 1": subwayLines,
-     "Secteur 2": route_pk12,
-     "Secteur 3": routes_pk12,
-     "Secteur 4": routees_pk12,
+    "Zone d'etude": boroughs
      
 
   }
