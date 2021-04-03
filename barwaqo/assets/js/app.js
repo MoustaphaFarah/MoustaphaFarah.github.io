@@ -857,7 +857,7 @@ var zone4BH = new Bloodhound({
     displayKey: "name",
     source: zone4BH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='logo.jpg' width='35' height='30'>&nbsp; Enquete PK 12</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/map1.png' width='35' height='30'>&nbsp; Enquete Barwaqo</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   },{
