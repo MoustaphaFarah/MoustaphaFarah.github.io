@@ -171,7 +171,7 @@ var boroughs = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/hayabley.geojson", function (data) {
+$.getJSON("data/zone_etude.geojson", function (data) {
   boroughs.addData(data);
 });
 
@@ -221,7 +221,7 @@ var subwayLines = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/hayable_zone1.geojson", function (data) {
+$.getJSON("data/", function (data) {
   subwayLines.addData(data);
 });
 
@@ -271,7 +271,7 @@ var hayabley_zone2 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/hayable_zone2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   hayabley_zone2.addData(data);
 });
 
@@ -321,7 +321,7 @@ var hayabley_zone3 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/hayable_zone3.geojson", function (data) {
+$.getJSON("data/", function (data) {
   hayabley_zone3.addData(data);
 });
 
@@ -371,7 +371,7 @@ var dogley_zone1 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/dogley_zone1.geojson", function (data) {
+$.getJSON("data/", function (data) {
   dogley_zone1.addData(data);
 });
 
@@ -422,7 +422,7 @@ var dogley_zone2 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/dogley_zone2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   dogley_zone2.addData(data);
 });
 
@@ -472,7 +472,7 @@ var layabley_zone1 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/layabley_zone1.geojson", function (data) {
+$.getJSON("data/", function (data) {
 layabley_zone1.addData(data);
 });
 
@@ -522,7 +522,7 @@ var layabley_zone2 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/layabley_zone2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   layabley_zone2.addData(data);
 });
 
@@ -573,7 +573,7 @@ var layabley_zone3 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/layabley_zone3.geojson", function (data) {
+$.getJSON("data/", function (data) {
   layabley_zone3.addData(data);
 });
 
@@ -623,7 +623,7 @@ var warabley_zone1 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/warabley_zone1.geojson", function (data) {
+$.getJSON("data/", function (data) {
   warabley_zone1.addData(data);
 });
 
@@ -673,7 +673,7 @@ var warabley_zone2 = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/warabley_zone2.geojson", function (data) {
+$.getJSON("data/", function (data) {
   warabley_zone2.addData(data);
 });
 
@@ -995,16 +995,16 @@ var groupedOverlays = {
   },
   "Reference": {
     "Zone d'etude": boroughs,
-     "Hayabley; zone 1": subwayLines,
-     "Hayabley; zone 2": hayabley_zone2,
-     "Hayabley; zone 3": hayabley_zone3,
-     "Dogley; zone 1": dogley_zone1,
-     "dogley; zone 2": dogley_zone2,
-     "Layabley; zone 1": layabley_zone1,
-     "Layabley; zone 2": layabley_zone2,
-     "Layabley; zone 3": layabley_zone3,
-      "Warabley; zone 1": warabley_zone1,
-      "Warabley; zone 2": warabley_zone2
+    // "Hayabley; zone 1": subwayLines,
+     //"Hayabley; zone 2": hayabley_zone2,
+    // "Hayabley; zone 3": hayabley_zone3,
+     //"Dogley; zone 1": dogley_zone1,
+    // "dogley; zone 2": dogley_zone2,
+    // "Layabley; zone 1": layabley_zone1,
+    // "Layabley; zone 2": layabley_zone2,
+    // "Layabley; zone 3": layabley_zone3,
+    //  "Warabley; zone 1": warabley_zone1,
+     // "Warabley; zone 2": warabley_zone2
 
   }
 };
