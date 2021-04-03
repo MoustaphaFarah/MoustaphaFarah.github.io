@@ -833,7 +833,7 @@ var zone4 = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_repond + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexe_repon + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>"  + "<tr><th>Telephone</th><td>" + feature.properties.telephon_1 + "</td></tr>"  + '<img src="'+ feature.properties.photo+'"style ="width:300px;height:300px;">'  +"<table>";
+       var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_repond + "</td></tr>" + "<tr><th>SEX</th><td>" + feature.properties.sexe_repon + "</td></tr>" + "<tr><th>AGE</th><td>" + feature.properties.age + "</td></tr>" + "<tr><th>Nationalté</th><td>" + feature.properties.nationalit + "</td></tr>" + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>"  + "<tr><th>Telephone</th><td>" + feature.properties.telephon_1 + "</td></tr>"    +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.Nom_repond);
@@ -994,17 +994,8 @@ var groupedOverlays = {
 
   },
   "Reference": {
-    "Zone d'etude": boroughs,
-    // "Hayabley; zone 1": subwayLines,
-     //"Hayabley; zone 2": hayabley_zone2,
-    // "Hayabley; zone 3": hayabley_zone3,
-     //"Dogley; zone 1": dogley_zone1,
-    // "dogley; zone 2": dogley_zone2,
-    // "Layabley; zone 1": layabley_zone1,
-    // "Layabley; zone 2": layabley_zone2,
-    // "Layabley; zone 3": layabley_zone3,
-    //  "Warabley; zone 1": warabley_zone1,
-     // "Warabley; zone 2": warabley_zone2
+    "Zone d'etude": boroughs
+    
 
   }
 };
