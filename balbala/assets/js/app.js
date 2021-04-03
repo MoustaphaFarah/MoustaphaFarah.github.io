@@ -262,7 +262,7 @@ var poteau = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "<tr><th>Situation matrimonial</th><td>" + feature.properties.CIN + "</td></tr>" + "<tr><th>Numero</th><td>" + feature.properties.num_per + "</td></tr>" + "<tr><th>Numero du Ceni</th><td>" + feature.properties.num_ceni + "<tr><th>Nom du conseil</th><td>" + feature.properties.nom_consei + "<tr><th>Numero du conseil</th><td>" + feature.properties.num_consei + "</td></tr>" + "</td></tr>" + "</td></tr>" + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.nom);
@@ -283,7 +283,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/demu.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -305,7 +305,7 @@ var compteur = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_Prenom + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.Quartiers + "</td></tr>"    + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_Prenom + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.Quartiers + "</td></tr>" + "<tr><th>Numero du ceni</th><td>" + feature.properties.CIN + "<tr><th>Numero de Telephone </th><td>" + feature.properties.telephone + "<tr><th>Nom du conseil </th><td>" + feature.properties.President + "<tr><th>Numero du conseil </th><td>" + feature.properties.num_consei   + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.Nom_Prenom);
@@ -326,7 +326,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/", function (data) {
+$.getJSON("data/malades.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -441,6 +441,12 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
+
+  "  Points d’intérêt ":{
+   
+     "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demunies": poteauLayer,
+     "<img src='assets/img/ma.png' width='24' height='28'>&nbsp;Malade": compteurLayer
+  },
 
   "Reference": {
     "Quartier": boroughs
@@ -566,7 +572,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/icone.png' width='24' height='28'>&nbsp;Abonnes</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/ma.png' width='24' height='28'>&nbsp;Malade</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
