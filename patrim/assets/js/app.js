@@ -994,7 +994,7 @@ var groupedOverlays = {
 
   },
   "Reference": {
-    "Zone d'etude": boroughs,
+    "Commune": boroughs,
     "patrimone": subwayLines,
         
     
