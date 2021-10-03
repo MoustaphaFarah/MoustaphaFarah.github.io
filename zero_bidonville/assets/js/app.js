@@ -934,7 +934,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développé par l'EQUIPE du SIG PRESIDENCE  | </span>";
+  div.innerHTML = "<span class='hidden-xs'> DJIB-CARTO  | </span>";
   return div;
 };
 map.addControl(attributionControl);
