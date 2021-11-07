@@ -994,9 +994,9 @@ var groupedOverlays = {
 
   },
   "Reference": {
-    "Vietnam": boroughs,
-    "Logement": subwayLines,
-    "Vegetation":poteauLayer
+    "DJEBEL": boroughs,
+    "LOGEMENT": subwayLines
+    
         
     
 
