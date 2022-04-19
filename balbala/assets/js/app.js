@@ -487,7 +487,7 @@ var groupedOverlays = {
    
      "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demunies": poteauLayer,
      "<img src='assets/img/ma.png' width='24' height='28'>&nbsp;Malade": compteurLayer,
-     "<img src='assets/img/map1.png' width='24' height='28'>&nbsp;Nouveau": nouveauLayer
+     
   },
 
   "Reference": {
