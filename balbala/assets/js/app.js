@@ -95,7 +95,7 @@ function syncSidebar() {
   poteau.eachLayer(function (layer) {
     if (map.hasLayer(poteauLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/marker.png"></td><td class="feature-name">' + layer.feature.properties.nom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/marker.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -103,7 +103,7 @@ function syncSidebar() {
   compteur.eachLayer(function (layer) {
     if (map.hasLayer(compteurLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/ma.png"></td><td class="feature-name">' + layer.feature.properties.Nom_Prenom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -139,49 +139,19 @@ var boroughs = L.geoJson(null, {
   style: function (feature) {
     return {
       color: "black",
-      fill: true,
+      fill: false,
       opacity: 1,
-      clickable: true
+      clickable: false
     };
   },
   onEachFeature: function (feature, layer) {
     boroughSearch.push({
-      name: layer.feature.properties.NAME,
+      name: layer.feature.properties.NOM,
       source: "Boroughs",
       id: L.stamp(layer),
       bounds: layer.getBounds()
     });
-
- if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.NAME+ "</td></tr>"  + "<table>";
-      layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.NAME);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
-
-        }
-      });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          weight: 3,
-          color: "#00FFFF",
-          opacity: 1
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        boroughs.resetStyle(e.target);
-      }
-    });
-
   }
-
 });
 $.getJSON("data/commune.geojson", function (data) {
   boroughs.addData(data);
@@ -256,16 +226,16 @@ var poteau = L.geoJson(null, {
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.nom,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.nom + "</td></tr>"  + "<tr><th>Quartier</th><td>" + feature.properties.Quartier + "</td></tr>" + "<tr><th>Situation matrimonial</th><td>" + feature.properties.CIN + "</td></tr>" + "<tr><th>Numero</th><td>" + feature.properties.num_per + "</td></tr>" + "<tr><th>Numero du Ceni</th><td>" + feature.properties.num_ceni + "<tr><th>Nom du conseil</th><td>" + feature.properties.nom_consei + "<tr><th>Numero du conseil</th><td>" + feature.properties.num_consei + "</td></tr>" + "</td></tr>" + "</td></tr>"   +"<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.repondant + "</td></tr>"   + '<img src="'+ feature.properties.photo +'" style="width:500px;height:400px;">'  +"<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.nom);
+          $("#feature-title").html(feature.properties.repondant);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
@@ -273,7 +243,7 @@ var poteau = L.geoJson(null, {
       });
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/poteau.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       poteauSearch.push({
-        name: layer.feature.properties.nom,
+        name: layer.feature.properties.repondant,
         address: layer.feature.properties.Quartier,
         source: "poteau",
         id: L.stamp(layer),
@@ -283,7 +253,7 @@ var poteau = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/demu.geojson", function (data) {
+$.getJSON("data/malade.geojson", function (data) {
   poteau.addData(data);
   map.addLayer(poteauLayer);
 });
@@ -294,30 +264,30 @@ var compteur = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/ma.png",
+        iconUrl: "assets/img/map1.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
       }),
-      title: feature.properties.Nom_Prenom,
+      title: feature.properties.repondant,
       riseOnHover: true
     });
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NOM</th><td>" + feature.properties.Nom_Prenom + "</td></tr>" + "<tr><th>Quartier</th><td>" + feature.properties.Quartiers + "</td></tr>" + "<tr><th>Numero du ceni</th><td>" + feature.properties.CIN + "<tr><th>Numero de Telephone </th><td>" + feature.properties.telephone + "<tr><th>Nom du conseil </th><td>" + feature.properties.President + "<tr><th>Numero du conseil </th><td>" + feature.properties.num_consei   + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Nom</th><td>" + feature.properties.repondant + "</td></tr>" +  '<img src="'+ feature.properties.photo +'" style="width:300px;height:300px;">'  + "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.Nom_Prenom);
+          $("#feature-title").html(feature.properties.repondant);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/ma.png"></td><td class="feature-name">' + layer.feature.properties.Nom_Prenom + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/map1.png"></td><td class="feature-name">' + layer.feature.properties.repondant + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       compteurSearch.push({
-        name: layer.feature.properties.Nom_Prenom,
-        address: layer.feature.properties.Quartiers,
+        name: layer.feature.properties.repondant,
+        address: layer.feature.properties.Nom,
         source: "compteur",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
@@ -326,7 +296,7 @@ var compteur = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/malades.geojson", function (data) {
+$.getJSON("data/demunis.geojson", function (data) {
   compteur.addData(data);
 });
 
@@ -387,7 +357,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par SIG PRESIDDENCE | </span>";
+  div.innerHTML = "<span class='hidden-xs'>Développé par Moustapha | </span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -441,13 +411,10 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
-
-  "  Points d’intérêt ":{
-   
-     "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demunies": poteauLayer,
-     "<img src='assets/img/ma.png' width='24' height='28'>&nbsp;Malade": compteurLayer
+  "  Points d’intérêt ": {
+    "<img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demunis": poteauLayer,
+    "<img src='assets/img/map1.png' width='24' height='28'>&nbsp;Malade": compteurLayer
   },
-
   "Reference": {
     "Quartier": boroughs
   }
@@ -564,7 +531,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: poteauBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/marker.png' width='24' height='28'>&nbsp;Menage Demunies</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/marker.png' width='24' height='28'>&nbsp;Demuni</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -572,7 +539,7 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: compteurBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/ma.png' width='24' height='28'>&nbsp;Malade</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/map1.png' width='24' height='28'>&nbsp;Malade</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
