@@ -428,7 +428,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Développer par SIG PRESIDDENCE | </span>";
+  div.innerHTML = "<span class='hidden-xs'> Réalisé par Moustapha | </span>";
   return div;
 };
 map.addControl(attributionControl);
